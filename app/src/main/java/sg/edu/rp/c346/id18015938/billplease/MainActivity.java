@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        amount = findViewById (R.id.amount_input);
+        amount = findViewById (R.id.input_amount);
         pax = findViewById(R.id.num_pax);
         sys = findViewById(R.id.sys);
         gst = findViewById(R.id.gst);
@@ -40,11 +40,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Code for the action
-                 String current_amount = amount.getText().toString();
-                 double current_bill = Double.parseDouble(current_amount);
+                Double current_bill = Double.parseDouble(amount.getText().toString());
 
 
-                 if (sys.isChecked()==true && gst.isChecked()==false){
+                if (sys.isChecked()==true && gst.isChecked()==false){
                      current_bill = current_bill * 1.1;
                     // bill.setText("Bill: $"+String.valueOf(total_bill));
                  }
@@ -60,19 +59,16 @@ public class MainActivity extends AppCompatActivity {
                    //  bill.setText("Bill: $"+String.valueOf(total_bill));
                  }
 
-                 else{
-                     current_bill = current_bill;
-                   //  bill.setText("Bill: $"+String.valueOf(total_bill));
-                 }
 
-                String d = discount.getText().toString();
-                int discount_percent = Integer.parseInt(d);
+
+
+                double discount_percent = Double.parseDouble(discount.getText().toString());
                 if(discount_percent!=0){
-                    double discount_price = current_bill * ((100-discount_percent)/100);
-                    bill.setText("Bill: $"+String.valueOf(discount_price));
+                    double discount_price = current_bill * ((1 - (discount_percent/100)));
+                    bill.setText("Total Bill: $"+String.valueOf(discount_price));
 
                 }else{
-                    bill.setText("Bill: $"+String.valueOf(current_bill));
+                    bill.setText("Total Bill: $"+String.valueOf(current_bill));
                 }
 
 

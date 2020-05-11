@@ -13,4 +13,5 @@
     <string name="each_pays">Each Pays:$0</string>
     <string name="reset">Reset</string>
     <string name="calculate">Calculate</string>
+    <string name="input_amount_here">Input amount here</string>
 </resources>

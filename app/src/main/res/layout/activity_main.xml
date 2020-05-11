@@ -17,12 +17,12 @@
             android:text="@string/amount" />
 
         <EditText
-            android:id="@+id/amount_input"
+            android:id="@+id/input_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Input amount here" />
+            android:inputType="number"
+            android:hint="@string/input_amount_here" />
 
     </LinearLayout>
 
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:hint="@string/input_num_of_pax_here" />
 
     </LinearLayout>
@@ -93,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:hint="@string/input_discount_here" />
 
     </LinearLayout>
