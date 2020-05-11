@@ -45,18 +45,15 @@ public class MainActivity extends AppCompatActivity {
 
                 if (sys.isChecked()==true && gst.isChecked()==false){
                      current_bill = current_bill * 1.1;
-                    // bill.setText("Bill: $"+String.valueOf(total_bill));
                  }
 
 
                  else if (sys.isChecked()==false && gst.isChecked()==true){
                     current_bill = current_bill * 1.07;
-                    // bill.setText("Bill: $"+String.valueOf(total_bill));
                  }
 
                  else if (sys.isChecked()==true && gst.isChecked()==true){
                      current_bill = current_bill * 1.17;
-                   //  bill.setText("Bill: $"+String.valueOf(total_bill));
                  }
 
 
