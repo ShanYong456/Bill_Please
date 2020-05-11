@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,42 +41,53 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Code for the action
-                Double current_bill = Double.parseDouble(amount.getText().toString());
-
-
-                if (sys.isChecked()==true && gst.isChecked()==false){
-                     current_bill = current_bill * 1.1;
-                 }
-
-
-                 else if (sys.isChecked()==false && gst.isChecked()==true){
-                    current_bill = current_bill * 1.07;
-                 }
-
-                 else if (sys.isChecked()==true && gst.isChecked()==true){
-                     current_bill = current_bill * 1.17;
-                 }
-
-
-
-
-                double discount_percent = Double.parseDouble(discount.getText().toString());
-                if(discount_percent!=0){
-                    double discount_price = current_bill * ((1 - (discount_percent/100)));
-                    bill.setText("Total Bill: $"+String.valueOf(discount_price));
-
+                if(amount.length()==0 && pax.length()==0 && discount.length()==0){
+                    Toast.makeText(MainActivity.this,"Please fill in all of the fields", Toast.LENGTH_SHORT).show();
+                }else if(amount.length()==0 && pax.length()!=0 && discount.length()!=0){
+                    Toast.makeText(MainActivity.this,"Please fill in the amount", Toast.LENGTH_SHORT).show();
+                }else if(amount.length()!=0 && pax.length()==0 && discount.length()!=0){
+                    Toast.makeText(MainActivity.this,"Please fill in the number of pax", Toast.LENGTH_SHORT).show();
+                }else if(amount.length()!=0 && pax.length()!=0 && discount.length()==0){
+                    Toast.makeText(MainActivity.this,"Please fill in the discount", Toast.LENGTH_SHORT).show();
                 }else{
-                    bill.setText("Total Bill: $"+String.valueOf(current_bill));
+                    Double current_bill = Double.parseDouble(amount.getText().toString());
+
+
+                    if (sys.isChecked()==true && gst.isChecked()==false){
+                        current_bill = current_bill * 1.1;
+                    }
+
+
+                    else if (sys.isChecked()==false && gst.isChecked()==true){
+                        current_bill = current_bill * 1.07;
+                    }
+
+                    else if (sys.isChecked()==true && gst.isChecked()==true){
+                        current_bill = current_bill * 1.17;
+                    }
+
+
+
+
+                    double discount_percent = Double.parseDouble(discount.getText().toString());
+                    if(discount_percent!=0){
+                        double discount_price = current_bill * ((1 - (discount_percent/100)));
+                        bill.setText("Total Bill: $"+String.format("%.2f",discount_price));
+
+                    }else{
+                        bill.setText("Total Bill: $"+String.format("%.2f",current_bill));
+                    }
+
+
+                    String p = pax.getText().toString();
+                    int num_pax = Integer.parseInt(p);
+                    double split_price = current_bill / num_pax;
+                    each.setText("Each person pay $"+String.format("%.2f",(split_price)));
+
                 }
 
 
-                String p = pax.getText().toString();
-                int num_pax = Integer.parseInt(p);
-                double split_price = current_bill / num_pax;
-                each.setText("Each person pay $"+String.valueOf(split_price));
-
             }
-
 
 
         });
